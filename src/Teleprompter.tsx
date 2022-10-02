@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './Teleprompter.css';
 import Slider from "./Slider";
+import Controller from "./Controller"
 
 const DEFAULT_THEME: string = "dark"; // dark or light
 const DEFAULT_TEXT: string = "";
