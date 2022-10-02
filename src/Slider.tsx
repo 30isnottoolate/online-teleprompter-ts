@@ -1,6 +1,6 @@
 const PLACEHOLDER_TEXT = "Type something...";
 
-const Slider = () => {
+const Slider: React.FC = () => {
 
     return (
         <div id="text-slider">
