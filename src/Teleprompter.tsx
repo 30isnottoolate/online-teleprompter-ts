@@ -68,29 +68,71 @@ const Teleprompter: React.FC = () => {
 		return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth));
 	}, [viewportWidth]);
 
+
+	useEffect(() => {
+		if (theme) localStorage.setItem("theme", theme);
+	}, [theme]);
+
+	useEffect(() => {
+		if (text) localStorage.setItem("text", text);
+	}, [text]);
+
+	useEffect(() => {
+		if (fontSize) localStorage.setItem("fontSize", fontSize.toString());
+	}, [fontSize]);
+
+	useEffect(() => {
+		if (lineHeight) localStorage.setItem("lineHeight", lineHeight.toString());
+	}, [lineHeight]);
+
+	useEffect(() => {
+		if (textSpeed) localStorage.setItem("textSpeed", textSpeed.toString());
+	}, [textSpeed]);
+
+	useEffect(() => {
+		if (mode === "edit") textContainerRef.current!.focus();
+	}, [mode]);
+
+	useEffect(() => {
+		let intervalID: ReturnType<typeof setInterval>;
+		let intervalValue = (text!.length / (textDisplayRef.current!.offsetHeight * READ_SPEED_COEF))
+			* (100 / textSpeed);
+
+		if (isActive && (textDisplayRef.current!.offsetHeight >
+			((-1) * position + fontSize * lineHeight + textMarkerRef.current!.offsetTop))) {
+			intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
+		} else {
+			setIsActive(false);
+			clearInterval(intervalID!);
+		}
+
+		return () => clearInterval(intervalID);
+	}, [isActive, position, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+
+
 	return (
-		<div id="teleprompter">
+		<div id="teleprompter" className={theme!}>
 			<Controller
-                isActive={isActive} setIsActive={setIsActive}
-                mode={mode} setMode={setMode}
-                isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
-                setPosition={setPosition}
-                viewportWidth={viewportWidth}
-                theme={theme || DEFAULT_THEME} setTheme={setTheme}
-                setText={setText}
-                fontSize={fontSize} setFontSize={setFontSize}
-                lineHeight={lineHeight} setLineHeight={setLineHeight}
-                textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
+				isActive={isActive} setIsActive={setIsActive}
+				mode={mode} setMode={setMode}
+				isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
+				setPosition={setPosition}
+				viewportWidth={viewportWidth}
+				theme={theme!} setTheme={setTheme}
+				setText={setText}
+				fontSize={fontSize} setFontSize={setFontSize}
+				lineHeight={lineHeight} setLineHeight={setLineHeight}
+				textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
 			<Slider
-                mode={mode}
-                position={position} setPosition={setPosition}
-                theme={theme || DEFAULT_THEME}
-                text={text || DEFAULT_TEXT} setText={setText}
-                fontSize={fontSize}
-                lineHeight={lineHeight}
-                textContainerRef={textContainerRef}
-                textDisplayRef={textDisplayRef}
-                textMarkerRef={textMarkerRef} />
+				mode={mode}
+				position={position} setPosition={setPosition}
+				theme={theme!}
+				text={text!} setText={setText}
+				fontSize={fontSize}
+				lineHeight={lineHeight}
+				textContainerRef={textContainerRef}
+				textDisplayRef={textDisplayRef}
+				textMarkerRef={textMarkerRef} />
 		</div>
 	);
 }
