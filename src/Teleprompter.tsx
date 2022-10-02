@@ -70,6 +70,17 @@ const Teleprompter: React.FC = () => {
 
 	return (
 		<div id="teleprompter">
+			<Controller
+                isActive={isActive} setIsActive={setIsActive}
+                mode={mode} setMode={setMode}
+                isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
+                setPosition={setPosition}
+                viewportWidth={viewportWidth}
+                theme={theme || DEFAULT_THEME} setTheme={setTheme}
+                setText={setText}
+                fontSize={fontSize} setFontSize={setFontSize}
+                lineHeight={lineHeight} setLineHeight={setLineHeight}
+                textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
 			<Slider
                 mode={mode}
                 position={position} setPosition={setPosition}
