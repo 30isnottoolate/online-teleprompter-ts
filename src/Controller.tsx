@@ -1,3 +1,4 @@
+import React from 'react';
 import './Teleprompter.css';
 
 interface ControllerProps {
@@ -20,9 +21,93 @@ interface ControllerProps {
     setTextSpeed: (textSpeed: number) => void;
 }
 
-const Controller:React.FC<ControllerProps> = ({isActive, setIsActive, mode, setMode, theme, setTheme,
+const Controller: React.FC<ControllerProps> = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }: ControllerProps) => {
+
+    const handleIsActive = () => {
+        if (isActive) {
+            setIsActive(false);
+        } else {
+            setIsActive(true);
+            setMode("read");
+            setIsMenuEnabled(false);
+        }
+    }
+
+    const handleReset = () => {
+        setIsActive(false);
+        setPosition(window.innerHeight * 0.15);
+    }
+
+    const handleMode = () => {
+        if (mode === "edit") {
+            setMode("read");
+            setIsMenuEnabled(false);
+        } else {
+            setMode("edit");
+            setIsActive(false);
+            setPosition(window.innerHeight * 0.15);
+        }
+    }
+
+    const handleTheme = () => {
+        if (theme === "dark") {
+            setTheme("light");
+        } else {
+            setTheme("dark");
+        }
+    }
+
+    const handleDefault = () => {
+        if (viewportWidth < 701) {
+            setFontSize(40);
+        } else setFontSize(100);
+
+        setLineHeight(1.2);
+        setTextSpeed(100);
+    }
+
+    const handleClear = () => {
+        setText("");
+        setMode("edit");
+    }
+
+    const getButtonPresence = () => {
+        if (viewportWidth < 701) {
+            return "initial";
+        } else return "none";
+    }
+
+    const getDivPresence = () => {
+        if (viewportWidth < 701) {
+            if (isMenuEnabled) {
+                return "grid";
+            } else return "none";
+        } else return "grid";
+    }
+
+    const getControllerHeight = () => {
+        if (viewportWidth < 701 && isMenuEnabled) {
+            return "40vh";
+        } else return "15vh";
+    }
+
+    const getGridTemplate = () => {
+        if (viewportWidth < 701) {
+            if (isMenuEnabled) {
+                return "repeat(5, auto)";
+            } else return "repeat(2, auto)";
+        } else return "auto";
+    }
+
+    const handleIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
+
+    const handleFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value));
+
+    const handleLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
+
+    const handleTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));
 
     return (
         <div
@@ -47,7 +132,7 @@ const Controller:React.FC<ControllerProps> = ({isActive, setIsActive, mode, setM
                 </button>
                 <button id="clear" className="main-buttons" >Clear</button>
                 <button
-                    id="settings-button" 
+                    id="settings-button"
                     className="main-buttons">
                     Settings
                 </button>
