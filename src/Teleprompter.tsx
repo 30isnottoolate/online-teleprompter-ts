@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './Teleprompter.css';
 import Slider from "./Slider";
-import Controller from "./Controller"
+import Controller from "./Controller";
 
 const DEFAULT_THEME: string = "dark"; // dark or light
 const DEFAULT_TEXT: string = "";
@@ -30,7 +30,7 @@ const Teleprompter: React.FC = () => {
 		if (localStorage.getItem("text") === null) {
 			localStorage.setItem("text", DEFAULT_TEXT);
 			return DEFAULT_TEXT;
-		} else return localStorage.getItem("text");
+		} else return localStorage.getItem("text") + "";
 	});
 
 	const [fontSize, setFontSize] = useState(() => {
@@ -90,20 +90,23 @@ const Teleprompter: React.FC = () => {
 	}, [textSpeed]);
 
 	useEffect(() => {
-		if (mode === "edit") textContainerRef.current!.focus();
+		if (mode === "edit" && textContainerRef.current) textContainerRef.current.focus();
 	}, [mode]);
 
 	useEffect(() => {
 		let intervalID: ReturnType<typeof setInterval>;
-		let intervalValue = (text!.length / (textDisplayRef.current!.offsetHeight * READ_SPEED_COEF))
-			* (100 / textSpeed);
+		let intervalValue: number;
 
-		if (isActive && (textDisplayRef.current!.offsetHeight >
-			((-1) * position + fontSize * lineHeight + textMarkerRef.current!.offsetTop))) {
+		if (textDisplayRef.current && text) {
+			intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF))
+			* (100 / textSpeed);
+		} else intervalValue = 18;
+
+		if (isActive && textDisplayRef.current && textMarkerRef.current && (textDisplayRef.current.offsetHeight >
+			((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
 			intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
 		} else {
 			setIsActive(false);
-			clearInterval(intervalID!);
 		}
 
 		return () => clearInterval(intervalID);
@@ -111,14 +114,14 @@ const Teleprompter: React.FC = () => {
 
 
 	return (
-		<div id="teleprompter" className={theme!}>
+		<div id="teleprompter" className={theme || "dark"}>
 			<Controller
 				isActive={isActive} setIsActive={setIsActive}
 				mode={mode} setMode={setMode}
 				isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
 				setPosition={setPosition}
 				viewportWidth={viewportWidth}
-				theme={theme!} setTheme={setTheme}
+				theme={theme || "dark"} setTheme={setTheme}
 				setText={setText}
 				fontSize={fontSize} setFontSize={setFontSize}
 				lineHeight={lineHeight} setLineHeight={setLineHeight}
@@ -126,8 +129,8 @@ const Teleprompter: React.FC = () => {
 			<Slider
 				mode={mode}
 				position={position} setPosition={setPosition}
-				theme={theme!}
-				text={text!} setText={setText}
+				theme={theme || "dark"}
+				text={text} setText={setText}
 				fontSize={fontSize}
 				lineHeight={lineHeight}
 				textContainerRef={textContainerRef}
