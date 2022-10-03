@@ -74,7 +74,7 @@ const Teleprompter: React.FC = () => {
 	}, [theme]);
 
 	useEffect(() => {
-		if (text) localStorage.setItem("text", text);
+		localStorage.setItem("text", text);
 	}, [text]);
 
 	useEffect(() => {
