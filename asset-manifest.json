@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/online-teleprompter-ts/static/css/main.62102beb.css",
+    "main.js": "/online-teleprompter-ts/static/js/main.99b7db7a.js",
+    "index.html": "/online-teleprompter-ts/index.html",
+    "main.62102beb.css.map": "/online-teleprompter-ts/static/css/main.62102beb.css.map",
+    "main.99b7db7a.js.map": "/online-teleprompter-ts/static/js/main.99b7db7a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.62102beb.css",
+    "static/js/main.99b7db7a.js"
+  ]
+}
