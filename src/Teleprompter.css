@@ -40,8 +40,8 @@ body {
     position: fixed;
     z-index: 2;
     width: 100vw;
-    transition-property: height;
-    transition-duration: 0.3s;
+    transition-property: height, opacity;
+    transition-duration: 0.3s, 0.6s;
 }
 
 #logo {
@@ -127,14 +127,10 @@ body {
 
 .transparent {
     opacity: 0.5;
-    transition-property: opacity;
-    transition-duration: 0.6s;
 }
 
 .visible {
     opacity: 1;
-    transition-property: opacity;
-    transition-duration: 0.6s;
 }
 
 .dark {
