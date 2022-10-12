@@ -93,12 +93,18 @@ const Teleprompter: React.FC = () => {
 		if (mode === "edit" && textContainerRef.current) textContainerRef.current.focus();
 	}, [mode]);
 
+    const countEmptyLines = (input: string) => {
+        return (input.match(/^[ ]*$/gm) || []).length;
+    }
+
 	useEffect(() => {
 		let intervalID: ReturnType<typeof setInterval>;
+		let noEmptyLinesTextHeight: number;
 		let intervalValue: number;
 
 		if (textDisplayRef.current && text) {
-			intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF))
+			noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
+			intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF))
 			* (100 / textSpeed);
 		} else intervalValue = 18;
 
