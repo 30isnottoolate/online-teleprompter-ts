@@ -45,6 +45,16 @@ body {
     transition-duration: 0.3s, 0.6s;
 }
 
+.dark-controller {
+    background-color: #05194d;
+    color: #d8e4fd;
+}
+
+.light-controller {
+    background-color: #B4C8FA;
+    color: #020d26;
+}
+
 #logo {
     display: grid;
     justify-items: center;
