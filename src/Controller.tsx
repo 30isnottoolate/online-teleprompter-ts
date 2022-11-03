@@ -112,11 +112,9 @@ const Controller: React.FC<ControllerProps> = ({ isActive, setIsActive, mode, se
     return (
         <div
             id="controller"
-            className={isActive ? "transparent" : "visible"}
+            className={`${(isActive ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
             style={{
                 gridTemplateRows: getGridTemplate(),
-                backgroundColor: theme === "dark" ? "#05194d" : "#B4C8FA",
-                color: theme === "dark" ? "#d8e4fd" : "#020d26",
                 height: getControllerHeight()
             }}>
             <div id="logo">
