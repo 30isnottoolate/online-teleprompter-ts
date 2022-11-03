@@ -89,8 +89,8 @@ const Controller: React.FC<ControllerProps> = ({ isActive, setIsActive, mode, se
 
     const getControllerHeight = () => {
         if (viewportWidth < 701 && isMenuEnabled) {
-            return "40vh";
-        } else return "15vh";
+            return "300px";
+        } else return "120px";
     }
 
     const getGridTemplate = () => {
