@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
     box-sizing: border-box;
@@ -7,7 +10,7 @@
 
 body {
     user-select: none;
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
     overflow: hidden;
     margin: 0;
 }
@@ -17,11 +20,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #bbbbbb;
+    background: #d8e4fd;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #555555;
+    background: #6a9fc8;
 }
 
 #teleprompter {
@@ -35,8 +38,6 @@ body {
     grid-template-columns: auto auto auto auto auto;
     gap: 3vw;
     justify-content: center;
-    background-color: #222222;
-    color: #ffffff;
     position: fixed;
     z-index: 2;
     width: 100vw;
@@ -48,6 +49,34 @@ body {
     display: grid;
     justify-items: center;
     align-items: center;
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+}
+
+button {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  color: #2c5777;
+  cursor: pointer;
+  font-family: "Work Sans", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  padding: 2px 4px;
+}
+
+button:hover, button:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+button:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
 }
 
 #main-buttons-group {
@@ -62,11 +91,6 @@ body {
 .mode-buttons,
 #default {
     width: 4.5em;
-}
-
-#start-stop,
-#default {
-    font-weight: bold;
 }
 
 #mode-group {
@@ -89,6 +113,10 @@ body {
 #default-container {
     display: grid;
     align-content: center;
+}
+
+textarea::-webkit-input-placeholder {
+    color: #6a9fc8;
 }
 
 #text-container,
@@ -128,13 +156,13 @@ body {
 }
 
 .dark {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #020d26;
+    color: #d8e4fd;
 }
 
 .light {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #d8e4fd;
+    color: #020d26;
 }
 
 @media only screen and (min-width: 701px) and (max-width: 1150px) {
