@@ -64,14 +64,15 @@ body {
 
 button {
   background-color: #e1ecf4;
-  border-radius: 3px;
-  border: 1px solid #7aa7c7;
-  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
   color: #2c5777;
-  cursor: pointer;
   font-family: "Work Sans", Arial, Helvetica, sans-serif;
   font-size: 13px;
+  width: 4.5em;
+  cursor: pointer;
   padding: 2px 4px;
+  border: 1px solid #7aa7c7;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
 }
 
 button:hover, button:focus {
@@ -97,12 +98,6 @@ button:active {
     justify-content: center;
 }
 
-.main-buttons,
-.mode-buttons,
-#default {
-    width: 4.5em;
-}
-
 #mode-group {
     display: grid;
     grid-template-columns: auto auto;
@@ -125,10 +120,6 @@ button:active {
     align-content: center;
 }
 
-textarea::-webkit-input-placeholder {
-    color: #6a9fc8;
-}
-
 #text-container,
 #text-display {
     position: absolute;
@@ -142,6 +133,10 @@ textarea::-webkit-input-placeholder {
     outline: none;
     resize: none;
     overflow-y: scroll;
+}
+
+textarea::-webkit-input-placeholder {
+    color: #6a9fc8;
 }
 
 #text-display {
