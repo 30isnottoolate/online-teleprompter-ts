@@ -148,6 +148,13 @@ textarea::-webkit-input-placeholder {
 
 #text-marker {
     position: absolute;
+    box-sizing: content-box;
+    margin: 0;
+}
+
+.text-marker {
+    position: absolute;
+    box-sizing: content-box;
     margin: 0;
 }
 
