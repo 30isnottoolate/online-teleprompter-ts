@@ -146,12 +146,6 @@ textarea::-webkit-input-placeholder {
     padding-right: 0.25vw;
 }
 
-#text-marker {
-    position: absolute;
-    box-sizing: content-box;
-    margin: 0;
-}
-
 .text-marker {
     position: absolute;
     box-sizing: content-box;
