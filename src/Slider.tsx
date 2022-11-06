@@ -1,4 +1,5 @@
 import React, { RefObject, useEffect } from "react";
+import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
 
@@ -13,7 +14,7 @@ interface SliderProps {
     lineHeight: number;
     textContainerRef: RefObject<HTMLTextAreaElement>;
     textDisplayRef: RefObject<HTMLPreElement>;
-    textMarkerRef: RefObject<HTMLParagraphElement>;
+    textMarkerRef: RefObject<HTMLDivElement>;
 }
 
 const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, theme, text, setText,
@@ -58,17 +59,15 @@ const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, theme, tex
                 }}>
                 {text}
             </pre>
-            <p
-                id="text-marker"
-                ref={textMarkerRef}
-                className={theme}
-                style={{
-                    display: mode === "edit" ? "none" : "initial",
-                    left: (fontSize * 0.19),
-                    top: "15vh",
-                    fontSize: fontSize + "px",
-                    lineHeight: lineHeight
-                }}>&#129170;</p>
+            <Marker
+                textMarkerRef={textMarkerRef}
+                fontSize={fontSize}
+                lineHeight={lineHeight}
+                mode={mode}
+                color={theme === "dark" ? "#d8e4fd" : "#020d26"}
+                left={fontSize * 0.19}
+                top="15vh"
+            />
         </div>
     );
 }
