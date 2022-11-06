@@ -22,3 +22,5 @@ const Marker: React.FC<MarkerProps> = ({fontSize, lineHeight, color, mode, top, 
         </svg>
     );
 }
+
+export default Marker;
