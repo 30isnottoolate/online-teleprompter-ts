@@ -11,7 +11,7 @@ const DEFAULT_TEXT_SPEED: number = 100;
 const READ_SPEED_COEF: number = 0.0151; // char/ms
 
 const Teleprompter: React.FC = () => {
-	const [isActive, setIsActive] = useState(false);
+	const [active, setActive] = useState(false);
 	const [mode, setMode] = useState("edit"); // edit or read
 	const [isMenuEnabled, setIsMenuEnabled] = useState(false);
 	const [position, setPosition] = useState(0);
@@ -107,27 +107,27 @@ const Teleprompter: React.FC = () => {
 			* (100 / textSpeed);
 		} else intervalValue = 18;
 
-		if (isActive) {
+		if (active) {
 			intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
 		} else {
-			setIsActive(false);
+			setActive(false);
 		}
 
 		return () => clearInterval(intervalID);
-	}, [isActive, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+	}, [active, viewportWidth, text, fontSize, lineHeight, textSpeed]);
 
 	useEffect(() => {
 		if (textDisplayRef.current && textMarkerRef.current) {
 			if (!(textDisplayRef.current.offsetHeight > ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
-				setIsActive(false);
+				setActive(false);
 			}
 		}
-	}, [position, fontSize, lineHeight])
+	}, [position, fontSize, lineHeight]);
 
 	return (
 		<div id="teleprompter" className={theme || "dark"}>
 			<Controller
-				isActive={isActive} setIsActive={setIsActive}
+				active={active} setActive={setActive}
 				mode={mode} setMode={setMode}
 				isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
 				setPosition={setPosition}
