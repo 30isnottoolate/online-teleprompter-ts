@@ -68,7 +68,6 @@ const Teleprompter: React.FC = () => {
 		return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth));
 	}, [viewportWidth]);
 
-
 	useEffect(() => {
 		if (theme) localStorage.setItem("theme", theme);
 	}, [theme]);
@@ -108,16 +107,22 @@ const Teleprompter: React.FC = () => {
 			* (100 / textSpeed);
 		} else intervalValue = 18;
 
-		if (isActive && textDisplayRef.current && textMarkerRef.current && (textDisplayRef.current.offsetHeight >
-			((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+		if (isActive) {
 			intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
 		} else {
 			setIsActive(false);
 		}
 
 		return () => clearInterval(intervalID);
-	}, [isActive, position, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+	}, [isActive, viewportWidth, text, fontSize, lineHeight, textSpeed]);
 
+	useEffect(() => {
+		if (textDisplayRef.current && textMarkerRef.current) {
+			if (!(textDisplayRef.current.offsetHeight > ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+				setIsActive(false);
+			}
+		}
+	}, [position, fontSize, lineHeight])
 
 	return (
 		<div id="teleprompter" className={theme || "dark"}>
