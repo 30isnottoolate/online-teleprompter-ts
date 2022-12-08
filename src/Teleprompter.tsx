@@ -117,9 +117,8 @@ const Teleprompter: React.FC = () => {
 	}, [active, viewportWidth, text, fontSize, lineHeight, textSpeed]);
 
 	useEffect(() => {
-		if (textDisplayRef.current && textMarkerRef.current) {
-			if (!(textDisplayRef.current.offsetHeight > 
-				((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+		if (textDisplayRef.current) {
+			if (position < (window.innerHeight * 0.15 - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
 				setActive(false);
 			}
 		}
