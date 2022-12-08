@@ -14,11 +14,10 @@ interface SliderProps {
     lineHeight: number;
     textContainerRef: RefObject<HTMLTextAreaElement>;
     textDisplayRef: RefObject<HTMLPreElement>;
-    textMarkerRef: RefObject<HTMLDivElement>;
 }
 
 const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, theme, text, setText,
-    fontSize, lineHeight, textContainerRef, textDisplayRef, textMarkerRef }: SliderProps) => {
+    fontSize, lineHeight, textContainerRef, textDisplayRef }: SliderProps) => {
     useEffect(() => {
         setPosition(window.innerHeight * 0.15);
     }, [fontSize, lineHeight, text, setPosition]);
@@ -52,7 +51,7 @@ const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, theme, tex
                 style={{
                     display: mode === "edit" ? "none" : "initial",
                     left: (fontSize * 0.69) + 2 + "px",
-                    top: (position + 2),
+                    top: position,
                     width: `calc(99vw - ${(fontSize * 0.69)}px)`,
                     fontSize: fontSize + "px",
                     lineHeight: lineHeight
@@ -60,7 +59,6 @@ const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, theme, tex
                 {text}
             </pre>
             <Marker
-                textMarkerRef={textMarkerRef}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
                 mode={mode}

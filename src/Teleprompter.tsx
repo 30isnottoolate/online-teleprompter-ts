@@ -145,8 +145,7 @@ const Teleprompter: React.FC = () => {
 				fontSize={fontSize}
 				lineHeight={lineHeight}
 				textContainerRef={textContainerRef}
-				textDisplayRef={textDisplayRef}
-				textMarkerRef={textMarkerRef} />
+				textDisplayRef={textDisplayRef} />
 		</div>
 	);
 }

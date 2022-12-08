@@ -2,7 +2,6 @@ import React, { RefObject } from 'react';
 import './Teleprompter.css';
 
 interface MarkerProps {
-    textMarkerRef: RefObject<HTMLDivElement>,
     fontSize: number,
     lineHeight: number,
     color: string,
@@ -12,9 +11,9 @@ interface MarkerProps {
 }
 
 const Marker: React.FC<MarkerProps> = 
-({ textMarkerRef, fontSize, lineHeight, color, mode, left, top }: MarkerProps) => {
+({ fontSize, lineHeight, color, mode, left, top }: MarkerProps) => {
     return (
-        <div ref={textMarkerRef}>
+        <div>
             <svg
                 className="text-marker"
                 height={fontSize}
