@@ -61,7 +61,6 @@ const Teleprompter: React.FC = () => {
 
 	const textContainerRef = useRef<HTMLTextAreaElement>(null);
 	const textDisplayRef = useRef<HTMLPreElement>(null);
-	const textMarkerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
