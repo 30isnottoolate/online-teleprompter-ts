@@ -165,6 +165,7 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                 <label htmlFor="font-size">Font size: </label>
                 <input
                     id="font-size"
+                    className="settings-slider"
                     type="range" min="40" max="150" step="1"
                     value={fontSize}
                     onChange={handleFontSize} />
@@ -172,6 +173,7 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                 <label htmlFor="line-height">Line height: </label>
                 <input
                     id="line-height"
+                    className="settings-slider"
                     type="range" min="1" max="1.5" step="0.01"
                     value={lineHeight}
                     onChange={handleLineHeight} />
@@ -179,6 +181,7 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
                     id="text-speed"
+                    className="settings-slider"
                     type="range" min="20" max="200" step="1"
                     value={textSpeed}
                     onChange={handleTextSpeed} />

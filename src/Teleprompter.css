@@ -19,11 +19,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #d8e4fd;
+    background: #00000000;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6a9fc8;
+    background: #0ea5e9;
 }
 
 #teleprompter {
@@ -45,13 +45,23 @@ body {
 }
 
 .dark-controller {
-    background-color: #05194d;
-    color: #d8e4fd;
+    background-color: #152b65;
+    color: #dbeafe;
 }
 
 .light-controller {
-    background-color: #B4C8FA;
-    color: #020d26;
+    background-color: #60a5fa;
+    color: #011327;
+}
+
+.dark {
+    background-color: #0a1533;
+    color: #eff6ff;
+}
+
+.light {
+    background-color: #bfdbfe;
+    color: #011327;
 }
 
 #logo {
@@ -62,31 +72,26 @@ body {
 }
 
 button {
-  background-color: #e1ecf4;
-  color: #2c5777;
-  font-family: "Work Sans", Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  width: 5em;
-  cursor: pointer;
-  padding: 2px 4px;
-  border: 1px solid #7aa7c7;
-  border-radius: 3px;
-  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    background-color: #cffafe;
+    color: #164e63;
+    font-family: "Work Sans", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    width: 5em;
+    cursor: pointer;
+    padding: 2px 4px;
+    border: 1px solid #164e63;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px 0.75px #0e7490;
 }
 
-button:hover, button:focus {
-  background-color: #b3d3ea;
-  color: #2c5777;
-}
-
+button:hover,
 button:focus {
-  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+    background-color: #a5f3fc;
 }
 
 button:active {
-  background-color: #a0c7e4;
-  box-shadow: none;
-  color: #2c5777;
+    background-color: #67e8f9;
+    box-shadow: none;
 }
 
 #main-buttons-group {
@@ -112,6 +117,39 @@ button:active {
     align-content: center;
     justify-content: center;
     text-align: right;
+}
+
+.settings-slider {
+    -webkit-appearance: none;
+    background: #cffafe;
+    height: 12px;
+    outline: #164e63 solid 1px;
+    border-radius: 7.5px;
+    box-shadow: 1px 1px 3px 0.75px #0e7490;
+}
+
+.settings-slider:hover {
+    background: #a5f3fc;
+}
+
+.settings-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #0ea5e9;
+    width: 10px;
+    height: 10px;
+    outline: #164e63 solid 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.settings-slider::-moz-range-thumb {
+    background: #0ea5e9;
+    width: 8px;
+    height: 8px;
+    outline: #164e63 solid 1px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 #default-container {
@@ -158,16 +196,6 @@ textarea::-webkit-input-placeholder {
 
 .visible {
     opacity: 1;
-}
-
-.dark {
-    background-color: #020d26;
-    color: #d8e4fd;
-}
-
-.light {
-    background-color: #d8e4fd;
-    color: #020d26;
 }
 
 @media only screen and (min-width: 701px) and (max-width: 1150px) {
