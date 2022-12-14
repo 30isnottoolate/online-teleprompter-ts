@@ -1,5 +1,4 @@
 import React from 'react';
-import './Teleprompter.css';
 
 interface ControllerProps {
     active: boolean;

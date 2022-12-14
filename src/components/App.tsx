@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './Teleprompter.css';
+import './App.css';
 import Slider from "./Slider";
 import Controller from "./Controller";
 
@@ -10,7 +10,7 @@ const DEFAULT_LINE_HEIGHT: number = 1.2;
 const DEFAULT_TEXT_SPEED: number = 100;
 const READ_SPEED_COEF: number = 0.0151; // char/ms
 
-const Teleprompter: React.FC = () => {
+const App: React.FC = () => {
 	const [active, setActive] = useState(false);
 	const [mode, setMode] = useState("edit"); // edit or read
 	const [isMenuEnabled, setIsMenuEnabled] = useState(false);
@@ -149,4 +149,4 @@ const Teleprompter: React.FC = () => {
 	);
 }
 
-export default Teleprompter;
+export default App;

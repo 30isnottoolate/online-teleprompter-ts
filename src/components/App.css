@@ -121,6 +121,7 @@ button:active {
 
 .settings-slider {
     -webkit-appearance: none;
+    appearance: none;
     background: #cffafe;
     height: 12px;
     outline: #164e63 solid 1px;
