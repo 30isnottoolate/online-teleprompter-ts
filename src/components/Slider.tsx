@@ -43,6 +43,7 @@ const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, theme, tex
                 }}
                 value={text}
                 placeholder={PLACEHOLDER_TEXT}
+                spellCheck={false}
                 onChange={handleTextChange} />
             <pre
                 id="text-display"
