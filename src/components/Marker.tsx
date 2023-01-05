@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface MarkerProps {
-    fontSize: number,
-    lineHeight: number,
-    color: string,
-    mode: string,
-    left: number,
-    top: string
+    fontSize: number;
+    lineHeight: number;
+    color: string;
+    mode: string;
+    left: number;
+    top: string;
 }
 
 const Marker: React.FC<MarkerProps> = 
