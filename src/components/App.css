@@ -15,7 +15,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 1vw;
+    width: 0.75rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -74,14 +74,14 @@ body {
 button {
     background-color: #cffafe;
     color: #164e63;
-    font-family: "Work Sans", Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    width: 5em;
+    font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+    font-size: 0.875rem;
+    width: 10ch;
     cursor: pointer;
-    padding: 2px 4px;
-    border: 1px solid #164e63;
-    border-radius: 3px;
-    box-shadow: 1px 1px 3px 0.75px #0e7490;
+    padding: 0.125rem 0.25rem;
+    border: 0.0625rem solid #164e63;
+    border-radius: 0.25rem;
+    box-shadow: 0.0625rem 0.0625rem 0.25rem 0.0625rem #0e7490;
 }
 
 button:hover,
@@ -107,6 +107,7 @@ button:active {
     grid-template-columns: auto auto;
     gap: 0.5vh 0.5vw;
     align-content: center;
+    align-items: center;
     text-align: right;
 }
 
@@ -123,10 +124,10 @@ button:active {
     -webkit-appearance: none;
     appearance: none;
     background: #cffafe;
-    height: 12px;
-    outline: #164e63 solid 1px;
-    border-radius: 7.5px;
-    box-shadow: 1px 1px 3px 0.75px #0e7490;
+    height: 0.75rem;
+    outline: #164e63 solid 0.0625rem;
+    border-radius: 0.5rem;
+    box-shadow: 0.0625rem 0.0625rem 0.25rem 0.0625rem #0e7490;
 }
 
 .settings-slider:hover {
@@ -137,19 +138,19 @@ button:active {
     -webkit-appearance: none;
     appearance: none;
     background: #0ea5e9;
-    width: 10px;
-    height: 10px;
-    outline: #164e63 solid 1px;
-    border-radius: 5px;
+    width: 0.625rem;
+    height: 0.625rem;
+    outline: #164e63 solid 0.0625rem;
+    border-radius: 0.3125rem;
     cursor: pointer;
 }
 
 .settings-slider::-moz-range-thumb {
     background: #0ea5e9;
-    width: 8px;
-    height: 8px;
-    outline: #164e63 solid 1px;
-    border-radius: 4px;
+    width: 0.5rem;
+    height: 0.5rem;
+    outline: #164e63 solid 0.0625rem;
+    border-radius: 0.25rem;
     cursor: pointer;
 }
 
@@ -163,7 +164,7 @@ button:active {
     position: absolute;
     z-index: 1;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    border: 0px;
+    border: 0;
     margin: 0;
 }
 
@@ -199,7 +200,7 @@ textarea::-webkit-input-placeholder {
     opacity: 1;
 }
 
-@media only screen and (min-width: 701px) and (max-width: 1150px) {
+@media only screen and (min-width: 44rem) and (max-width: 72rem) {
     #controller {
         grid-template-columns: auto auto auto;
         grid-template-rows: auto auto;
@@ -252,11 +253,11 @@ textarea::-webkit-input-placeholder {
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 44rem) {
     #controller {
         grid-template-columns: auto;
         grid-template-rows: repeat(5, auto);
-        gap: 10px;
+        gap: 0.625rem;
         align-content: center;
     }
 
