@@ -13,6 +13,14 @@ body {
     margin: 0;
 }
 
+.dark {
+    background-color: #0a1533;
+}
+
+.light {
+    background-color: #bfdbfe;
+}
+
 ::-webkit-scrollbar {
     width: 0.75rem;
 }
@@ -25,7 +33,7 @@ body {
     background: #0ea5e9;
 }
 
-#teleprompter {
+#root {
     z-index: 0;
     width: 100vw;
     height: 100vh;
@@ -43,23 +51,13 @@ body {
     transition-duration: 0.3s, 0.6s;
 }
 
-.dark-controller {
+.dark #controller {
     background-color: #152b65;
     color: #dbeafe;
 }
 
-.light-controller {
+.light #controller {
     background-color: #60a5fa;
-    color: #011327;
-}
-
-.dark {
-    background-color: #0a1533;
-    color: #eff6ff;
-}
-
-.light {
-    background-color: #bfdbfe;
     color: #011327;
 }
 
@@ -103,12 +101,15 @@ button:active {
     justify-content: center;
 }
 
+#settings-button {
+    display: none;
+}
+
 #mode-group {
     display: grid;
     grid-template-columns: auto auto;
     gap: 0.5vh 0.5vw;
     align-content: center;
-    align-items: center;
     text-align: right;
 }
 
@@ -170,7 +171,18 @@ button:active {
     margin: 0;
 }
 
+.dark #text-container, .dark #text-display {
+    background-color: #0a1533;
+    color: #eff6ff;
+}
+
+.light #text-container, .light #text-display {
+    background-color: #bfdbfe;
+    color: #011327;
+}
+
 #text-container {
+    top: 7.5rem;
     padding: 0;
     outline: none;
     resize: none;
@@ -190,8 +202,17 @@ textarea::-webkit-input-placeholder {
 
 .text-marker {
     position: absolute;
+    top: 7.5rem;
     box-sizing: content-box;
     margin: 0;
+}
+
+.dark .text-marker {
+    fill: #eff6ff
+}
+
+.light .text-marker {
+    fill: #011327
 }
 
 .transparent {
@@ -276,6 +297,10 @@ textarea::-webkit-input-placeholder {
         gap: 2vw;
         grid-column: 1 / 2;
         grid-row: 2 / 3;
+    }
+
+    #settings-button {
+        display: initial;
     }
 
     #mode-group {

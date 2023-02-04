@@ -11,49 +11,51 @@ const DEFAULT_TEXT_SPEED: number = 100;
 const READ_SPEED_COEF: number = 0.0151; // char/ms
 
 const App: React.FC = () => {
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
 	const [active, setActive] = useState(false);
 	const [mode, setMode] = useState("edit"); // edit or read
 	const [isMenuEnabled, setIsMenuEnabled] = useState(false);
 	const [position, setPosition] = useState(0);
-	const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+	const [viewportWidth, setViewportWidth] = useState(window.innerWidth / remValue);
 
 	const [theme, setTheme] = useState(() => {
-		if (localStorage.getItem("theme") === null) {
+		if (!localStorage.getItem("theme")) {
 			localStorage.setItem("theme", DEFAULT_THEME);
 			return DEFAULT_THEME;
 		} else {
-			return localStorage.getItem("theme");
+			return localStorage.getItem("theme") + "";
 		}
 	});
 
 	const [text, setText] = useState(() => {
-		if (localStorage.getItem("text") === null) {
+		if (!localStorage.getItem("text")) {
 			localStorage.setItem("text", DEFAULT_TEXT);
 			return DEFAULT_TEXT;
 		} else return localStorage.getItem("text") + "";
 	});
 
 	const [fontSize, setFontSize] = useState(() => {
-		if (localStorage.getItem("fontSize") === null) {
-			if (viewportWidth < 701) {
-				localStorage.setItem("fontSize", (40).toString());
-				return 40;
+		if (!localStorage.getItem("fontSize")) {
+			if (viewportWidth < 44) {
+				localStorage.setItem("fontSize", (40 / remValue).toString());
+				return 40 / remValue;
 			} else {
-				localStorage.setItem("fontSize", DEFAULT_FONT_SIZE.toString());
-				return DEFAULT_FONT_SIZE;
+				localStorage.setItem("fontSize", (DEFAULT_FONT_SIZE / remValue).toString());
+				return DEFAULT_FONT_SIZE / remValue;
 			}
 		} else return Number(localStorage.getItem("fontSize"));
 	});
 
 	const [lineHeight, setLineHeight] = useState(() => {
-		if (localStorage.getItem("lineHeight") === null) {
+		if (!localStorage.getItem("lineHeight")) {
 			localStorage.setItem("lineHeight", DEFAULT_LINE_HEIGHT.toString());
 			return DEFAULT_LINE_HEIGHT;
 		} else return Number(localStorage.getItem("lineHeight"));
 	});
 
 	const [textSpeed, setTextSpeed] = useState(() => {
-		if (localStorage.getItem("textSpeed") === null) {
+		if (!localStorage.getItem("textSpeed")) {
 			localStorage.setItem("textSpeed", DEFAULT_TEXT_SPEED.toString());
 			return DEFAULT_TEXT_SPEED;
 		} else return Number(localStorage.getItem("textSpeed"));
@@ -63,12 +65,16 @@ const App: React.FC = () => {
 	const textDisplayRef = useRef<HTMLPreElement>(null);
 
 	useEffect(() => {
-		window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-		return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth));
+		window.addEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
+
+		return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
 	}, [viewportWidth]);
 
 	useEffect(() => {
-		if (theme) localStorage.setItem("theme", theme);
+		if (theme) {
+			localStorage.setItem("theme", theme);
+			document.body.className = theme;
+		}
 	}, [theme]);
 
 	useEffect(() => {
@@ -91,19 +97,16 @@ const App: React.FC = () => {
 		if (mode === "edit" && textContainerRef.current) textContainerRef.current.focus();
 	}, [mode]);
 
-    const countEmptyLines = (input: string) => {
-        return (input.match(/^[ ]*$/gm) || []).length;
-    }
-
 	useEffect(() => {
+		const emptyLines = (input: string) => (input.match(/^[ ]*$/gm) || []).length;
+
 		let intervalID: ReturnType<typeof setInterval>;
 		let noEmptyLinesTextHeight: number;
 		let intervalValue: number;
 
 		if (textDisplayRef.current && text) {
-			noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
-			intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF))
-			* (100 / textSpeed);
+			noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * emptyLines(text);
+			intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 		} else intervalValue = 18;
 
 		if (active) {
@@ -117,21 +120,21 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		if (textDisplayRef.current) {
-			if (position < (window.innerHeight * 0.15 - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
+			if (position < (7.5 * remValue - textDisplayRef.current.offsetHeight + remValue * fontSize * lineHeight)) {
 				setActive(false);
 			}
 		}
 	}, [position, fontSize, lineHeight]);
 
 	return (
-		<div id="teleprompter" className={theme || "dark"}>
+		<>
 			<Controller
 				active={active} setActive={setActive}
 				mode={mode} setMode={setMode}
 				isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
 				setPosition={setPosition}
 				viewportWidth={viewportWidth}
-				theme={theme || "dark"} setTheme={setTheme}
+				theme={theme} setTheme={setTheme}
 				setText={setText}
 				fontSize={fontSize} setFontSize={setFontSize}
 				lineHeight={lineHeight} setLineHeight={setLineHeight}
@@ -139,13 +142,12 @@ const App: React.FC = () => {
 			<Slider
 				mode={mode}
 				position={position} setPosition={setPosition}
-				theme={theme || "dark"}
 				text={text} setText={setText}
 				fontSize={fontSize}
 				lineHeight={lineHeight}
 				textContainerRef={textContainerRef}
 				textDisplayRef={textDisplayRef} />
-		</div>
+		</>
 	);
 }
 
