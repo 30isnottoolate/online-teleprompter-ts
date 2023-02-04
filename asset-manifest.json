@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/online-teleprompter-ts/static/css/main.a47bf678.css",
-    "main.js": "/online-teleprompter-ts/static/js/main.be34d679.js",
+    "main.css": "/online-teleprompter-ts/static/css/main.c17f3895.css",
+    "main.js": "/online-teleprompter-ts/static/js/main.c4898c6c.js",
     "index.html": "/online-teleprompter-ts/index.html",
-    "main.a47bf678.css.map": "/online-teleprompter-ts/static/css/main.a47bf678.css.map",
-    "main.be34d679.js.map": "/online-teleprompter-ts/static/js/main.be34d679.js.map"
+    "main.c17f3895.css.map": "/online-teleprompter-ts/static/css/main.c17f3895.css.map",
+    "main.c4898c6c.js.map": "/online-teleprompter-ts/static/js/main.c4898c6c.js.map"
   },
   "entrypoints": [
-    "static/css/main.a47bf678.css",
-    "static/js/main.be34d679.js"
+    "static/css/main.c17f3895.css",
+    "static/js/main.c4898c6c.js"
   ]
 }
