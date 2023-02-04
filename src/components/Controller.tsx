@@ -2,29 +2,31 @@ import React from 'react';
 
 interface ControllerProps {
     active: boolean;
-    setActive: (active: boolean) => void;
+    setActive: React.Dispatch<React.SetStateAction<boolean>>;
     mode: string;
-    setMode: (mode: string) => void;
+    setMode: React.Dispatch<React.SetStateAction<string>>;
     theme: string;
-    setTheme: (theme: string) => void;
+    setTheme: React.Dispatch<React.SetStateAction<string>>;
     isMenuEnabled: boolean;
-    setIsMenuEnabled: (isMenuEnabled: boolean) => void;
-    setPosition: (position: number) => void;
+    setIsMenuEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+    setPosition: React.Dispatch<React.SetStateAction<number>>;
     viewportWidth: number;
-    setText: (text: string) => void;
+    setText: React.Dispatch<React.SetStateAction<string>>;
     fontSize: number;
-    setFontSize: (fontSize: number) => void;
+    setFontSize: React.Dispatch<React.SetStateAction<number>>;
     lineHeight: number;
-    setLineHeight: (lineHeight: number) => void;
+    setLineHeight: React.Dispatch<React.SetStateAction<number>>;
     textSpeed: number;
-    setTextSpeed: (textSpeed: number) => void;
+    setTextSpeed: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }: ControllerProps) => {
 
-    const handleActive = () => {
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
+    const changeActive = () => {
         if (active) {
             setActive(false);
         } else {
@@ -34,87 +36,61 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
         }
     }
 
-    const handleReset = () => {
+    const resetSlider = () => {
         setActive(false);
-        setPosition(window.innerHeight * 0.15);
+        setPosition(7.5 * remValue);
     }
 
-    const handleMode = () => {
+    const clearText = () => {
+        setText("");
+        setMode("edit");
+    }
+
+    const changeIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
+
+    const divPresence = viewportWidth < 44 ?
+        isMenuEnabled ? "grid" : "none"
+        : "grid";
+
+    const changeMode = () => {
         if (mode === "edit") {
             setMode("read");
             setIsMenuEnabled(false);
         } else {
             setMode("edit");
             setActive(false);
-            setPosition(window.innerHeight * 0.15);
+            setPosition(7.5 * remValue);
         }
     }
 
-    const handleTheme = () => {
-        if (theme === "dark") {
-            setTheme("light");
-        } else {
-            setTheme("dark");
-        }
-    }
+    const changeTheme = () => setTheme((prevState: string) => prevState === "light" ? "dark" : "light");
 
-    const handleDefault = () => {
-        if (viewportWidth < 701) {
-            setFontSize(40);
-        } else setFontSize(100);
+    const changeFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value) / remValue);
+    const changeLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
+    const changeTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));
+
+    const defaultSettings = () => {
+        if (viewportWidth < 44) {
+            setFontSize(2.5);
+        } else setFontSize(6.25);
 
         setLineHeight(1.2);
         setTextSpeed(100);
     }
 
-    const handleClear = () => {
-        setText("");
-        setMode("edit");
-    }
+    const gridTemplate = viewportWidth < 44 ?
+        isMenuEnabled ? "repeat(5, auto)" : "repeat(2, auto)"
+        : "auto";
 
-    const getButtonPresence = () => {
-        if (viewportWidth < 701) {
-            return "initial";
-        } else return "none";
-    }
-
-    const getDivPresence = () => {
-        if (viewportWidth < 701) {
-            if (isMenuEnabled) {
-                return "grid";
-            } else return "none";
-        } else return "grid";
-    }
-
-    const getControllerHeight = () => {
-        if (viewportWidth < 701 && isMenuEnabled) {
-            return "300px";
-        } else return "120px";
-    }
-
-    const getGridTemplate = () => {
-        if (viewportWidth < 701) {
-            if (isMenuEnabled) {
-                return "repeat(5, auto)";
-            } else return "repeat(2, auto)";
-        } else return "auto";
-    }
-
-    const handleIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
-
-    const handleFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value));
-
-    const handleLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
-
-    const handleTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));
+    const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "18.75rem" : "7.5rem";
 
     return (
         <div
             id="controller"
-            className={`${(active ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
+            className={active ? "transparent" : "visible"}
             style={{
-                gridTemplateRows: getGridTemplate(),
-                height: getControllerHeight()
+                gridTemplateRows: gridTemplate,
+                height: controllerHeight
             }}>
             <div id="logo">
                 <h1>
@@ -125,57 +101,65 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                 <button
                     id="start-stop"
                     className="main-buttons"
-                    onClick={handleActive} >
+                    onClick={changeActive} >
                     {active ? "Stop" : "Start"}
                 </button>
                 <button
                     id="reset"
                     className="main-buttons"
-                    onClick={handleReset}
+                    onClick={resetSlider}
                     disabled={mode === "edit" ? true : false}>
                     Reset
                 </button>
-                <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
+                <button
+                    id="clear"
+                    className="main-buttons"
+                    onClick={clearText} >
+                    Clear
+                </button>
                 <button
                     id="settings-button"
                     className="main-buttons"
-                    style={{ display: getButtonPresence() }}
-                    onClick={handleIsMenuEnabled}>
+                    onClick={changeIsMenuEnabled}>
                     Settings
                 </button>
             </div>
-            <div id="mode-group" style={{ display: getDivPresence() }} >
+            <div 
+                id="mode-group" 
+                style={{ display: divPresence }} >
                 <span>Current mode: </span>
                 <button
                     id="mode"
                     className="mode-buttons"
-                    onClick={handleMode} >
+                    onClick={changeMode} >
                     {mode === "edit" ? "Edit" : "Read"}
                 </button>
                 <span>Color theme: </span>
                 <button
                     id="theme"
                     className="mode-buttons"
-                    onClick={handleTheme} >
+                    onClick={changeTheme} >
                     {theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
-            <div id="settings" style={{ display: getDivPresence() }} >
+            <div 
+                id="settings" 
+                style={{ display: divPresence }} >
                 <label htmlFor="font-size">Font size: </label>
                 <input
                     id="font-size"
                     className="settings-slider"
                     type="range" min="40" max="150" step="1"
-                    value={fontSize}
-                    onChange={handleFontSize} />
-                <span>{fontSize}</span>
+                    value={fontSize * remValue}
+                    onChange={changeFontSize} />
+                <span>{(fontSize * remValue).toFixed(0)}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
                     id="line-height"
                     className="settings-slider"
                     type="range" min="1" max="1.5" step="0.01"
                     value={lineHeight}
-                    onChange={handleLineHeight} />
+                    onChange={changeLineHeight} />
                 <span>{lineHeight.toFixed(2)}</span>
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
@@ -183,13 +167,15 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     className="settings-slider"
                     type="range" min="20" max="200" step="1"
                     value={textSpeed}
-                    onChange={handleTextSpeed} />
+                    onChange={changeTextSpeed} />
                 <span>{textSpeed}</span>
             </div>
-            <div id="default-container" style={{ display: getDivPresence() }} >
+            <div 
+                id="default-container" 
+                style={{ display: divPresence }} >
                 <button
                     id="default"
-                    onClick={handleDefault} >
+                    onClick={defaultSettings} >
                     Default
                 </button>
             </div>
