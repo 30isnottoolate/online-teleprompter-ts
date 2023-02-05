@@ -46,7 +46,7 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
         setMode("edit");
     }
 
-    const changeIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
+    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
 
     const divPresence = viewportWidth < 44 ?
         isMenuEnabled ? "grid" : "none"
@@ -63,7 +63,7 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
         }
     }
 
-    const changeTheme = () => setTheme((prevState: string) => prevState === "light" ? "dark" : "light");
+    const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
 
     const changeFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value) / remValue);
     const changeLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
@@ -124,8 +124,8 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     Settings
                 </button>
             </div>
-            <div 
-                id="mode-group" 
+            <div
+                id="mode-group"
                 style={{ display: divPresence }} >
                 <span>Current mode: </span>
                 <button
@@ -142,8 +142,8 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     {theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
-            <div 
-                id="settings" 
+            <div
+                id="settings"
                 style={{ display: divPresence }} >
                 <label htmlFor="font-size">Font size: </label>
                 <input
@@ -151,7 +151,8 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     className="settings-slider"
                     type="range" min="40" max="150" step="1"
                     value={fontSize * remValue}
-                    onChange={changeFontSize} />
+                    onChange={changeFontSize}
+                />
                 <span>{(fontSize * remValue).toFixed(0)}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
@@ -159,7 +160,8 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     className="settings-slider"
                     type="range" min="1" max="1.5" step="0.01"
                     value={lineHeight}
-                    onChange={changeLineHeight} />
+                    onChange={changeLineHeight}
+                />
                 <span>{lineHeight.toFixed(2)}</span>
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
@@ -167,11 +169,12 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     className="settings-slider"
                     type="range" min="20" max="200" step="1"
                     value={textSpeed}
-                    onChange={changeTextSpeed} />
+                    onChange={changeTextSpeed}
+                />
                 <span>{textSpeed}</span>
             </div>
-            <div 
-                id="default-container" 
+            <div
+                id="default-container"
                 style={{ display: divPresence }} >
                 <button
                     id="default"
