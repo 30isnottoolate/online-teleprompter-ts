@@ -47,8 +47,6 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
         setMode("edit");
     }
 
-    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
-
     const divPresence = viewportWidth < 44 ?
         isMenuEnabled ? "grid" : "none"
         : "grid";
