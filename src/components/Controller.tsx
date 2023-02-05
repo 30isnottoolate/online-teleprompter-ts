@@ -27,26 +27,6 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
 
     const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
-    const changeActive = () => {
-        if (active) {
-            setActive(false);
-        } else {
-            setActive(true);
-            setMode("read");
-            setIsMenuEnabled(false);
-        }
-    }
-
-    const resetSlider = () => {
-        setActive(false);
-        setPosition(7.5 * remValue);
-    }
-
-    const clearText = () => {
-        setText("");
-        setMode("edit");
-    }
-
     const divPresence = viewportWidth < 44 ?
         isMenuEnabled ? "grid" : "none"
         : "grid";
@@ -96,13 +76,14 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     Online Teleprompter
                 </h1>
             </div>
-            <MainButtons
-                setIsMenuEnabled={setIsMenuEnabled}
-                changeActive={changeActive}
-                active={active}
-                resetSlider={resetSlider}
-                mode={mode}
-                clearText={clearText}
+            <MainButtons 
+                active={active} 
+                setActive={setActive} 
+                mode={mode} 
+                setMode={setMode} 
+                setIsMenuEnabled={setIsMenuEnabled} 
+                setPosition={setPosition}
+                setText={setText}
             />
             <div
                 id="mode-group"

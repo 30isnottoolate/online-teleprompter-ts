@@ -1,16 +1,39 @@
 import React, { Dispatch, SetStateAction } from "react";
 
 interface MainButtonsProps {
-    setIsMenuEnabled: Dispatch<SetStateAction<boolean>>;
-    changeActive: () => void;
     active: boolean;
-    resetSlider: () => void;
+    setActive: Dispatch<SetStateAction<boolean>>;
     mode: string;
-    clearText: () => void;
+    setMode: Dispatch<SetStateAction<string>>;
+    setIsMenuEnabled: Dispatch<SetStateAction<boolean>>;
+    setPosition: Dispatch<SetStateAction<number>>;
+    setText: Dispatch<SetStateAction<string>>;
 }
 
-const MainButtons: React.FC<MainButtonsProps>  = (
-    { setIsMenuEnabled, changeActive, active, resetSlider, mode, clearText }: MainButtonsProps) => {
+const MainButtons: React.FC<MainButtonsProps> = (
+    { active, setActive, mode, setMode, setIsMenuEnabled, setPosition, setText }: MainButtonsProps) => {
+
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
+    const changeActive = () => {
+        if (active) {
+            setActive(false);
+        } else {
+            setActive(true);
+            setMode("read");
+            setIsMenuEnabled(false);
+        }
+    }
+
+    const resetSlider = () => {
+        setActive(false);
+        setPosition(7.5 * remValue);
+    }
+
+    const clearText = () => {
+        setText("");
+        setMode("edit");
+    }
 
     const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
 
