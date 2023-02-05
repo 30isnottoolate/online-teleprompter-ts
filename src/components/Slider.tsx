@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect } from "react";
+import React, { RefObject } from "react";
 import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
@@ -6,7 +6,6 @@ const PLACEHOLDER_TEXT = "Type something...";
 interface SliderProps {
     mode: string;
     position: number;
-    setPosition: React.Dispatch<React.SetStateAction<number>>;
     text: string;
     setText: React.Dispatch<React.SetStateAction<string>>;
     fontSize: number;
@@ -15,14 +14,8 @@ interface SliderProps {
     textDisplayRef: RefObject<HTMLPreElement>;
 }
 
-const Slider: React.FC<SliderProps> = ({ mode, position, setPosition, text, setText,
+const Slider: React.FC<SliderProps> = ({ mode, position, text, setText,
     fontSize, lineHeight, textContainerRef, textDisplayRef }: SliderProps) => {
-
-    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
-
-    useEffect(() => {
-        setPosition(7.5 * remValue);
-    }, [fontSize, lineHeight, text, setPosition]);
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
