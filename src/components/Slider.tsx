@@ -23,34 +23,35 @@ const Slider: React.FC<SliderProps> = ({ mode, position, text, setText,
 
     return (
         <div id="text-slider">
-            <textarea
-                id="text-container"
-                ref={textContainerRef}
-                style={{
-                    display: mode === "edit" ? "initial" : "none",
-                    height: "calc(100vh - 7.5rem)",
-                    left: `${fontSize * 0.69}rem`,
-                    width: `calc(100vw - ${fontSize * 0.69}rem)`,
-                    fontSize: `${fontSize}rem`,
-                    lineHeight: lineHeight
-                }}
-                value={text}
-                placeholder={PLACEHOLDER_TEXT}
-                spellCheck={false}
-                onChange={handleTextChange} />
-            <pre
-                id="text-display"
-                ref={textDisplayRef}
-                style={{
-                    display: mode === "edit" ? "none" : "initial",
-                    left: `${fontSize * 0.69}rem`,
-                    top: position,
-                    width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
-                    fontSize: `${fontSize}rem`,
-                    lineHeight: lineHeight
-                }}>
-                {text}
-            </pre>
+            {mode === "edit" &&
+                <textarea
+                    id="text-container"
+                    ref={textContainerRef}
+                    style={{
+                        height: "calc(100vh - 7.5rem)",
+                        left: `${fontSize * 0.69}rem`,
+                        width: `calc(100vw - ${fontSize * 0.69}rem)`,
+                        fontSize: `${fontSize}rem`,
+                        lineHeight: lineHeight
+                    }}
+                    value={text}
+                    placeholder={PLACEHOLDER_TEXT}
+                    spellCheck={false}
+                    onChange={handleTextChange}
+                />}
+            {mode === "read" &&
+                <pre
+                    id="text-display"
+                    ref={textDisplayRef}
+                    style={{
+                        left: `${fontSize * 0.69}rem`,
+                        top: position,
+                        width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
+                        fontSize: `${fontSize}rem`,
+                        lineHeight: lineHeight
+                    }}>
+                    {text}
+                </pre>}
             {mode === "read" &&
                 <Marker
                     fontSize={fontSize}
