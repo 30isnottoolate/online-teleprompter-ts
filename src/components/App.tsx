@@ -71,6 +71,10 @@ const App: React.FC = () => {
 	}, [viewportWidth]);
 
 	useEffect(() => {
+        setPosition(7.5 * remValue);
+    }, [fontSize, lineHeight, text]);
+
+	useEffect(() => {
 		if (theme) {
 			localStorage.setItem("theme", theme);
 			document.body.className = theme;
