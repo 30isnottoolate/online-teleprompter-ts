@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 interface ControllerProps {
     active: boolean;
-    setActive: React.Dispatch<React.SetStateAction<boolean>>;
+    setActive: Dispatch<SetStateAction<boolean>>;
     mode: string;
-    setMode: React.Dispatch<React.SetStateAction<string>>;
+    setMode: Dispatch<SetStateAction<string>>;
     theme: string;
-    setTheme: React.Dispatch<React.SetStateAction<string>>;
+    setTheme: Dispatch<SetStateAction<string>>;
     isMenuEnabled: boolean;
-    setIsMenuEnabled: React.Dispatch<React.SetStateAction<boolean>>;
-    setPosition: React.Dispatch<React.SetStateAction<number>>;
+    setIsMenuEnabled: Dispatch<SetStateAction<boolean>>;
+    setPosition: Dispatch<SetStateAction<number>>;
     viewportWidth: number;
-    setText: React.Dispatch<React.SetStateAction<string>>;
+    setText: Dispatch<SetStateAction<string>>;
     fontSize: number;
-    setFontSize: React.Dispatch<React.SetStateAction<number>>;
+    setFontSize: Dispatch<SetStateAction<number>>;
     lineHeight: number;
-    setLineHeight: React.Dispatch<React.SetStateAction<number>>;
+    setLineHeight: Dispatch<SetStateAction<number>>;
     textSpeed: number;
-    setTextSpeed: React.Dispatch<React.SetStateAction<number>>;
+    setTextSpeed: Dispatch<SetStateAction<number>>;
 }
 
 const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMode, theme, setTheme,
