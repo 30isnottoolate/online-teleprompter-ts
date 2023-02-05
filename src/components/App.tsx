@@ -145,7 +145,7 @@ const App: React.FC = () => {
 				textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
 			<Slider
 				mode={mode}
-				position={position} setPosition={setPosition}
+				position={position}
 				text={text} setText={setText}
 				fontSize={fontSize}
 				lineHeight={lineHeight}
