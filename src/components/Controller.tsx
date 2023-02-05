@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import MainButtons from './MainButtons';
 
 interface ControllerProps {
     active: boolean;
@@ -97,33 +98,14 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     Online Teleprompter
                 </h1>
             </div>
-            <div id="main-buttons-group">
-                <button
-                    id="start-stop"
-                    className="main-buttons"
-                    onClick={changeActive} >
-                    {active ? "Stop" : "Start"}
-                </button>
-                <button
-                    id="reset"
-                    className="main-buttons"
-                    onClick={resetSlider}
-                    disabled={mode === "edit" ? true : false}>
-                    Reset
-                </button>
-                <button
-                    id="clear"
-                    className="main-buttons"
-                    onClick={clearText} >
-                    Clear
-                </button>
-                <button
-                    id="settings-button"
-                    className="main-buttons"
-                    onClick={changeIsMenuEnabled}>
-                    Settings
-                </button>
-            </div>
+            <MainButtons
+                setIsMenuEnabled={setIsMenuEnabled}
+                changeActive={changeActive}
+                active={active}
+                resetSlider={resetSlider}
+                mode={mode}
+                clearText={clearText}
+            />
             <div
                 id="mode-group"
                 style={{ display: divPresence }} >
