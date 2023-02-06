@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import MainButtons from './MainButtons';
+import ModeButtons from './ModeButtons';
+import Settings from './Settings';
 
 interface ControllerProps {
     active: boolean;
@@ -42,11 +44,11 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
         }
     }
 
-    const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
+    /*const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
 
     const changeFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value) / remValue);
     const changeLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
-    const changeTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));
+    const changeTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));*/
 
     const defaultSettings = () => {
         if (viewportWidth < 44) {
@@ -76,16 +78,32 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     Online Teleprompter
                 </h1>
             </div>
-            <MainButtons 
-                active={active} 
-                setActive={setActive} 
-                mode={mode} 
-                setMode={setMode} 
-                setIsMenuEnabled={setIsMenuEnabled} 
+            <MainButtons
+                active={active}
+                setActive={setActive}
+                mode={mode}
+                setMode={setMode}
+                setIsMenuEnabled={setIsMenuEnabled}
                 setPosition={setPosition}
                 setText={setText}
             />
-            <div
+            <ModeButtons
+                divPresence={divPresence}
+                changeMode={changeMode}
+                mode={mode}
+                theme={theme}
+                setTheme={setTheme}
+            />
+            <Settings
+                divPresence={divPresence}
+                fontSize={fontSize}
+                setFontSize={setFontSize}
+                lineHeight={lineHeight}
+                setLineHeight={setLineHeight}
+                textSpeed={textSpeed}
+                setTextSpeed={setTextSpeed}
+            />
+            {/*<div
                 id="mode-group"
                 style={{ display: divPresence }} >
                 <span>Current mode: </span>
@@ -133,7 +151,7 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                     onChange={changeTextSpeed}
                 />
                 <span>{textSpeed}</span>
-            </div>
+            </div>*/}
             <div
                 id="default-container"
                 style={{ display: divPresence }} >
