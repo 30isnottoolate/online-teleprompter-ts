@@ -183,6 +183,7 @@ button:active {
 
 #text-container {
     top: 7.5rem;
+    height: calc(100vh - 7.5rem);
     padding: 0;
     outline: none;
     resize: none;
