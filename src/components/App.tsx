@@ -132,10 +132,6 @@ const App: React.FC = () => {
 		}
 	}, [position, fontSize, lineHeight, remValue]);
 
-	const divPresence = viewportWidth < 44 ?
-		isMenuEnabled ? "grid" : "none"
-		: "grid";
-
 	const changeMode = () => {
 		if (mode === "edit") {
 			setMode("read");
@@ -161,6 +157,10 @@ const App: React.FC = () => {
 		: "auto";
 
 	const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "18.75rem" : "7.5rem";
+
+	const divPresence = viewportWidth < 44 ?
+		isMenuEnabled ? "grid" : "none"
+		: "grid";
 
 	return (
 		<>
