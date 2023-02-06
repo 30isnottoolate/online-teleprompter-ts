@@ -44,12 +44,6 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
         }
     }
 
-    /*const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
-
-    const changeFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value) / remValue);
-    const changeLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
-    const changeTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));*/
-
     const defaultSettings = () => {
         if (viewportWidth < 44) {
             setFontSize(2.5);
@@ -103,55 +97,6 @@ const Controller: React.FC<ControllerProps> = ({ active, setActive, mode, setMod
                 textSpeed={textSpeed}
                 setTextSpeed={setTextSpeed}
             />
-            {/*<div
-                id="mode-group"
-                style={{ display: divPresence }} >
-                <span>Current mode: </span>
-                <button
-                    id="mode"
-                    className="mode-buttons"
-                    onClick={changeMode} >
-                    {mode === "edit" ? "Edit" : "Read"}
-                </button>
-                <span>Color theme: </span>
-                <button
-                    id="theme"
-                    className="mode-buttons"
-                    onClick={changeTheme} >
-                    {theme === "dark" ? "Dark" : "Light"}
-                </button>
-            </div>
-            <div
-                id="settings"
-                style={{ display: divPresence }} >
-                <label htmlFor="font-size">Font size: </label>
-                <input
-                    id="font-size"
-                    className="settings-slider"
-                    type="range" min="40" max="150" step="1"
-                    value={fontSize * remValue}
-                    onChange={changeFontSize}
-                />
-                <span>{(fontSize * remValue).toFixed(0)}</span>
-                <label htmlFor="line-height">Line height: </label>
-                <input
-                    id="line-height"
-                    className="settings-slider"
-                    type="range" min="1" max="1.5" step="0.01"
-                    value={lineHeight}
-                    onChange={changeLineHeight}
-                />
-                <span>{lineHeight.toFixed(2)}</span>
-                <label htmlFor="text-speed">Text speed: </label>
-                <input
-                    id="text-speed"
-                    className="settings-slider"
-                    type="range" min="20" max="200" step="1"
-                    value={textSpeed}
-                    onChange={changeTextSpeed}
-                />
-                <span>{textSpeed}</span>
-            </div>*/}
             <div
                 id="default-container"
                 style={{ display: divPresence }} >
