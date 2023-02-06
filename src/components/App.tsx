@@ -4,7 +4,6 @@ import MainButtons from './MainButtons';
 import ModeButtons from './ModeButtons';
 import Settings from './Settings';
 import Slider from "./Slider";
-import Controller from "./Controller";
 
 const DEFAULT_THEME: string = "dark"; // dark or light
 const DEFAULT_TEXT: string = "";
