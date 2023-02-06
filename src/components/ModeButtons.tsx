@@ -36,4 +36,3 @@ const ModeButtons: React.FC<ModeButtonsProps> =
     }
 
 export default ModeButtons;
-////

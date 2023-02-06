@@ -55,4 +55,3 @@ const Settings: React.FC<SettingsProps> =
     }
 
 export default Settings;
-////////
