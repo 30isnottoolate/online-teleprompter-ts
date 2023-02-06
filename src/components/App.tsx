@@ -70,11 +70,11 @@ const App: React.FC = () => {
 		window.addEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
 
 		return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
-	}, [viewportWidth]);
+	}, [viewportWidth, remValue]);
 
 	useEffect(() => {
 		setPosition(7.5 * remValue);
-	}, [fontSize, lineHeight, text]);
+	}, [fontSize, lineHeight, text, remValue]);
 
 	useEffect(() => {
 		if (theme) {
@@ -122,7 +122,7 @@ const App: React.FC = () => {
 		}
 
 		return () => clearInterval(intervalID);
-	}, [active, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+	}, [active, viewportWidth, text, fontSize, lineHeight, textSpeed, remValue]);
 
 	useEffect(() => {
 		if (textDisplayRef.current) {
@@ -130,7 +130,7 @@ const App: React.FC = () => {
 				setActive(false);
 			}
 		}
-	}, [position, fontSize, lineHeight]);
+	}, [position, fontSize, lineHeight, remValue]);
 
 	const divPresence = viewportWidth < 44 ?
 		isMenuEnabled ? "grid" : "none"
