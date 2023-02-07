@@ -8,16 +8,19 @@ interface SettingsProps {
     setLineHeight: Dispatch<SetStateAction<number>>;
     textSpeed: number;
     setTextSpeed: Dispatch<SetStateAction<number>>;
+    textMargin: number;
+    setTextMargin: Dispatch<SetStateAction<number>>;
 }
 
 const Settings: React.FC<SettingsProps> =
-    ({ divPresence, fontSize, setFontSize, lineHeight, setLineHeight, textSpeed, setTextSpeed }: SettingsProps) => {
+    ({ divPresence, fontSize, setFontSize, lineHeight, setLineHeight, textSpeed, setTextSpeed, textMargin, setTextMargin }: SettingsProps) => {
 
         const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
         const changeFontSize = (e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value) / remValue);
         const changeLineHeight = (e: React.ChangeEvent<HTMLInputElement>) => setLineHeight(Number(e.target.value));
         const changeTextSpeed = (e: React.ChangeEvent<HTMLInputElement>) => setTextSpeed(Number(e.target.value));
+        const changeTextMargin = (e: React.ChangeEvent<HTMLInputElement>) => setTextMargin(Number(e.target.value));
 
         return (
             <div
@@ -50,6 +53,15 @@ const Settings: React.FC<SettingsProps> =
                     onChange={changeTextSpeed}
                 />
                 <span>{textSpeed}</span>
+                <label htmlFor="text-margin">Margin: </label>
+                <input
+                    id="text-margin"
+                    className="settings-slider"
+                    type="range" min="0" max="40" step="1"
+                    value={textMargin}
+                    onChange={changeTextMargin}
+                />
+                <span>{textMargin}</span>
             </div>
         );
     }
