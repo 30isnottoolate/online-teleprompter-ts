@@ -1,5 +1,4 @@
 import React from 'react';
-import { text } from 'stream/consumers';
 
 interface MarkerProps {
     textDirection: string;
@@ -28,6 +27,7 @@ const Marker: React.FC<MarkerProps> =
 
         return style;
     }
+
     return (
         <div>
             <svg
