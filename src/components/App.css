@@ -206,6 +206,7 @@ textarea::-webkit-input-placeholder {
     top: 7.5rem;
     box-sizing: content-box;
     margin: 0;
+    z-index: 1;
 }
 
 .dark .text-marker {
@@ -270,9 +271,7 @@ textarea::-webkit-input-placeholder {
         grid-row: 1 / 3;
     }
 
-    #font-size,
-    #line-height,
-    #text-speed {
+    .settings-slider {
         width: 15vw
     }
 }
@@ -323,9 +322,7 @@ textarea::-webkit-input-placeholder {
         grid-row: 4 / 5;
     }
 
-    #font-size,
-    #line-height,
-    #text-speed {
+    .settings-slider {
         width: 40vw
     }
 }
