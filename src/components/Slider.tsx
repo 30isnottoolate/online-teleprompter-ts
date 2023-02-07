@@ -16,8 +16,9 @@ interface SliderProps {
     textDisplayRef: RefObject<HTMLPreElement>;
 }
 
-const Slider: React.FC<SliderProps> = ({ mode, textDirection, position, text, setText,
-    fontSize, lineHeight, textMargin, textContainerRef, textDisplayRef }: SliderProps) => {
+const Slider: React.FC<SliderProps> = (
+    { mode, textDirection, position, text, setText, fontSize, lineHeight, textMargin,
+        textContainerRef, textDisplayRef }: SliderProps) => {
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);

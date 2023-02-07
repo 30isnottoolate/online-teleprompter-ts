@@ -7,8 +7,8 @@ interface MarkerProps {
     textMargin: number;
 }
 
-const Marker: React.FC<MarkerProps> = 
-({ textDirection, fontSize, lineHeight, textMargin }: MarkerProps) => {
+const Marker: React.FC<MarkerProps> = (
+    { textDirection, fontSize, lineHeight, textMargin }: MarkerProps) => {
 
     const markerStyle = () => {
         const style = {
