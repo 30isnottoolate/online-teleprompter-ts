@@ -6,6 +6,7 @@ import Settings from './Settings';
 import Slider from "./Slider";
 
 const DEFAULT_THEME: string = "dark"; // dark or light
+const DEFAULT_TEXT_DIRECTION: string = "ltr" // ltr or rtl
 const DEFAULT_TEXT: string = "";
 const DEFAULT_FONT_SIZE: number = 100;
 const DEFAULT_LINE_HEIGHT: number = 1.2;
@@ -28,6 +29,15 @@ const App: React.FC = () => {
 			return DEFAULT_THEME;
 		} else {
 			return localStorage.getItem("theme") + "";
+		}
+	});
+
+	const [textDirection, setTextDirection] = useState(() => {
+		if (!localStorage.getItem("textDirection")) {
+			localStorage.setItem("textDirection", DEFAULT_TEXT_DIRECTION);
+			return DEFAULT_TEXT_DIRECTION;
+		} else {
+			return localStorage.getItem("textDirection") + "";
 		}
 	});
 
@@ -90,6 +100,10 @@ const App: React.FC = () => {
 			document.body.className = theme;
 		}
 	}, [theme]);
+
+	useEffect(() => {
+		localStorage.setItem("textDirection", textDirection);
+	}, [textDirection]);
 
 	useEffect(() => {
 		localStorage.setItem("text", text);
@@ -204,6 +218,8 @@ const App: React.FC = () => {
 					mode={mode}
 					theme={theme}
 					setTheme={setTheme}
+					textDirection={textDirection}
+					setTextDirection={setTextDirection}
 				/>
 				<Settings
 					divPresence={divPresence}
@@ -228,6 +244,7 @@ const App: React.FC = () => {
 			</div>
 			<Slider
 				mode={mode}
+				textDirection={textDirection}
 				position={position}
 				text={text} setText={setText}
 				fontSize={fontSize}
