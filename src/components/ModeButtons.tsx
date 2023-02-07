@@ -6,12 +6,15 @@ interface ModeButtonsProps {
     mode: string;
     theme: string;
     setTheme: React.Dispatch<React.SetStateAction<string>>;
+    textDirection: string;
+    setTextDirection: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ModeButtons: React.FC<ModeButtonsProps> =
-    ({ divPresence, changeMode, mode, theme, setTheme }: ModeButtonsProps) => {
+    ({ divPresence, changeMode, mode, theme, setTheme, textDirection, setTextDirection }: ModeButtonsProps) => {
 
         const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
+        const changeTextDirection = () => setTextDirection(prevState => prevState === "ltr" ? "rtl" : "ltr")
 
         return (
             <div
@@ -30,6 +33,13 @@ const ModeButtons: React.FC<ModeButtonsProps> =
                     className="mode-buttons"
                     onClick={changeTheme} >
                     {theme === "dark" ? "Dark" : "Light"}
+                </button>
+                <span>Text direction: </span>
+                <button
+                    id="text-direction"
+                    className="mode-buttons"
+                    onClick={changeTextDirection} >
+                    {textDirection === "ltr" ? "Normal" : "Inverse"}
                 </button>
             </div>
         );
