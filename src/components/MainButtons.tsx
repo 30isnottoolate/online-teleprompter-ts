@@ -27,7 +27,7 @@ const MainButtons: React.FC<MainButtonsProps> = (
 
     const resetSlider = () => {
         setActive(false);
-        setPosition(7.5 * remValue);
+        setPosition(9.5 * remValue);
     }
 
     const clearText = () => {

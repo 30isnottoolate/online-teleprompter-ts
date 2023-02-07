@@ -91,7 +91,7 @@ const App: React.FC = () => {
 	}, [viewportWidth, remValue]);
 
 	useEffect(() => {
-		setPosition(7.5 * remValue);
+		setPosition(9.5 * remValue);
 	}, [fontSize, lineHeight, textMargin, text, remValue]);
 
 	useEffect(() => {
@@ -152,7 +152,7 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		if (textDisplayRef.current) {
-			if (position < (7.5 * remValue - textDisplayRef.current.offsetHeight + remValue * fontSize * lineHeight)) {
+			if (position < (9.5 * remValue - textDisplayRef.current.offsetHeight + remValue * fontSize * lineHeight)) {
 				setActive(false);
 			}
 		}
@@ -165,7 +165,7 @@ const App: React.FC = () => {
 		} else {
 			setMode("edit");
 			setActive(false);
-			setPosition(7.5 * remValue);
+			setPosition(9.5 * remValue);
 		}
 	}
 
@@ -183,7 +183,7 @@ const App: React.FC = () => {
 		isMenuEnabled ? "repeat(5, auto)" : "repeat(2, auto)"
 		: "auto";
 
-	const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "18.75rem" : "7.5rem";
+	const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "23rem" : "9.5rem";
 
 	const divPresence = viewportWidth < 44 ?
 		isMenuEnabled ? "grid" : "none"

@@ -182,8 +182,8 @@ button:active {
 }
 
 #text-container {
-    top: 7.5rem;
-    height: calc(100vh - 7.5rem);
+    top: 9.5rem;
+    height: calc(100vh - 9.5rem);
     padding: 0;
     outline: none;
     resize: none;
@@ -203,7 +203,7 @@ textarea::-webkit-input-placeholder {
 
 .text-marker {
     position: absolute;
-    top: 7.5rem;
+    top: 9.5rem;
     box-sizing: content-box;
     margin: 0;
     z-index: 1;
@@ -242,11 +242,13 @@ textarea::-webkit-input-placeholder {
     h1 {
         font-size: 1.5em;
         margin: 0;
+        transform: translateY(-0.5rem);
     }
 
     #main-buttons-group {
         grid-column: 1 / 2;
         grid-row: 2 / 3;
+        transform: translateY(-1rem);
     }
 
     #mode-group {
