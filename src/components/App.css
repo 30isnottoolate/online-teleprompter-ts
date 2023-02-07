@@ -65,9 +65,19 @@ body {
     display: grid;
     justify-items: center;
     align-items: center;
-    line-height: 1;
+    align-content: center;
+    line-height: 1.4;
     margin-bottom: 0.5rem;
     font-family: "Oswald", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    margin: 0;
+}
+
+#logo span {
+    font-size: 0.875rem;
+    font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
 }
 
 button {
@@ -96,9 +106,12 @@ button:active {
 #main-buttons-group {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 0.5vw;
     align-content: center;
     justify-content: center;
+}
+
+.main-buttons {
+    margin: 0 0.125rem;
 }
 
 #settings-button {
@@ -225,7 +238,7 @@ textarea::-webkit-input-placeholder {
     opacity: 1;
 }
 
-@media only screen and (min-width: 44rem) and (max-width: 72rem) {
+@media only screen and (min-width: 46rem) and (max-width: 72rem) {
     #controller {
         grid-template-columns: auto auto auto;
         grid-template-rows: auto auto;
@@ -237,18 +250,12 @@ textarea::-webkit-input-placeholder {
     #logo {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
-    }
-
-    h1 {
-        font-size: 1.5em;
-        margin: 0;
         transform: translateY(-0.5rem);
     }
 
     #main-buttons-group {
         grid-column: 1 / 2;
         grid-row: 2 / 3;
-        transform: translateY(-1rem);
     }
 
     #mode-group {
@@ -278,25 +285,21 @@ textarea::-webkit-input-placeholder {
     }
 }
 
-@media only screen and (max-width: 43.99rem) {
+@media only screen and (max-width: 45.99rem) {
     #controller {
         grid-template-columns: auto;
         grid-template-rows: repeat(5, auto);
-        gap: 1rem;
+        gap: 0.5rem;
         align-content: center;
     }
 
     #logo {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
-    }
-
-    h1 {
-        margin: 0;
+        transform: translateY(-0.5rem);
     }
 
     #main-buttons-group {
-        gap: 2vw;
         grid-column: 1 / 2;
         grid-row: 2 / 3;
     }
