@@ -10,6 +10,7 @@ const DEFAULT_TEXT: string = "";
 const DEFAULT_FONT_SIZE: number = 100;
 const DEFAULT_LINE_HEIGHT: number = 1.2;
 const DEFAULT_TEXT_SPEED: number = 100;
+const DEFAULT_TEXT_MARGIN: number = 0;
 const READ_SPEED_COEF: number = 0.0151; // char/ms
 
 const App: React.FC = () => {
@@ -63,6 +64,13 @@ const App: React.FC = () => {
 		} else return Number(localStorage.getItem("textSpeed"));
 	});
 
+	const [textMargin, setTextMargin] = useState(() => {
+		if (!localStorage.getItem("textMargin")) {
+			localStorage.setItem("textMargin", DEFAULT_TEXT_MARGIN.toString());
+			return DEFAULT_TEXT_MARGIN;
+		} else return Number(localStorage.getItem("textMargin"));
+	});
+
 	const textContainerRef = useRef<HTMLTextAreaElement>(null);
 	const textDisplayRef = useRef<HTMLPreElement>(null);
 
@@ -74,7 +82,7 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		setPosition(7.5 * remValue);
-	}, [fontSize, lineHeight, text, remValue]);
+	}, [fontSize, lineHeight, textMargin, text, remValue]);
 
 	useEffect(() => {
 		if (theme) {
@@ -100,6 +108,10 @@ const App: React.FC = () => {
 	}, [textSpeed]);
 
 	useEffect(() => {
+		if (textMargin) localStorage.setItem("textMargin", textMargin.toString());
+	}, [textMargin]);
+
+	useEffect(() => {
 		if (mode === "edit" && textContainerRef.current) textContainerRef.current.focus();
 	}, [mode]);
 
@@ -122,7 +134,7 @@ const App: React.FC = () => {
 		}
 
 		return () => clearInterval(intervalID);
-	}, [active, viewportWidth, text, fontSize, lineHeight, textSpeed, remValue]);
+	}, [active, viewportWidth, text, fontSize, lineHeight, textSpeed, textMargin, remValue]);
 
 	useEffect(() => {
 		if (textDisplayRef.current) {
@@ -130,7 +142,7 @@ const App: React.FC = () => {
 				setActive(false);
 			}
 		}
-	}, [position, fontSize, lineHeight, remValue]);
+	}, [position, fontSize, lineHeight, textMargin, remValue]);
 
 	const changeMode = () => {
 		if (mode === "edit") {
@@ -150,6 +162,7 @@ const App: React.FC = () => {
 
 		setLineHeight(1.2);
 		setTextSpeed(100);
+		setTextMargin(0);
 	}
 
 	const gridTemplate = viewportWidth < 44 ?
@@ -200,6 +213,8 @@ const App: React.FC = () => {
 					setLineHeight={setLineHeight}
 					textSpeed={textSpeed}
 					setTextSpeed={setTextSpeed}
+					textMargin={textMargin}
+					setTextMargin={setTextMargin}
 				/>
 				<div
 					id="default-container"
@@ -217,6 +232,7 @@ const App: React.FC = () => {
 				text={text} setText={setText}
 				fontSize={fontSize}
 				lineHeight={lineHeight}
+				textMargin={textMargin}
 				textContainerRef={textContainerRef}
 				textDisplayRef={textDisplayRef}
 			/>
