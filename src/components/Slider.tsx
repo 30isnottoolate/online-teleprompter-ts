@@ -53,7 +53,7 @@ const Slider: React.FC<SliderProps> = (
                     id="text-display"
                     ref={textDisplayRef}
                     style={{
-                        left: `${fontSize * 0.69}rem`,
+                        left: `calc(${fontSize * 0.69}rem + ${textDirection === "ltr" ? "0rem" : "0.75rem"})`,
                         top: position,
                         width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
