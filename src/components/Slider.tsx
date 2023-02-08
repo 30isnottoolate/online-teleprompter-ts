@@ -20,8 +20,14 @@ const Slider: React.FC<SliderProps> = (
     { mode, textDirection, position, text, setText, fontSize, lineHeight, textMargin,
         textContainerRef, textDisplayRef }: SliderProps) => {
 
-    const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setText(e.target.value);
+    const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value);
+
+    const displayPadding = () => {
+        if (textDirection === "ltr") {
+            return `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`;
+        } else {
+            return `0 ${textMargin}vw 0 calc(${textMargin}vw + ${fontSize * 0.69}rem)`;
+        }
     }
 
     return (
@@ -52,9 +58,8 @@ const Slider: React.FC<SliderProps> = (
                         width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
                         lineHeight: lineHeight,
-                        padding: `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`,
-                        direction: textDirection === "ltr" ? "ltr" : "rtl",
-                        unicodeBidi: textDirection === "ltr" ? "initial" : "bidi-override"
+                        padding: displayPadding(),
+                        transform: `scale(${textDirection === "ltr" ? "1" : "-1"}, 1)`
                     }}>
                     {text}
                 </pre>}
