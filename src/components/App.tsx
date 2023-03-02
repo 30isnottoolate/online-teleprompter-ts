@@ -9,6 +9,7 @@ const DEFAULT_THEME: string = "dark"; // dark or light
 const DEFAULT_TEXT_DIRECTION: string = "ltr" // ltr or rtl
 const DEFAULT_TEXT: string = "";
 const DEFAULT_FONT_SIZE: number = 100;
+const DEFAULT_SMALL_FONT_SIZE: number = 40;
 const DEFAULT_LINE_HEIGHT: number = 1.2;
 const DEFAULT_TEXT_SPEED: number = 100;
 const DEFAULT_TEXT_MARGIN: number = 0;
@@ -51,8 +52,8 @@ const App: React.FC = () => {
     const [fontSize, setFontSize] = useState(() => {
         if (!localStorage.getItem("fontSize")) {
             if (viewportWidth < 46) {
-                localStorage.setItem("fontSize", (40 / remValue).toString());
-                return 40 / remValue;
+                localStorage.setItem("fontSize", (DEFAULT_SMALL_FONT_SIZE / remValue).toString());
+                return DEFAULT_SMALL_FONT_SIZE / remValue;
             } else {
                 localStorage.setItem("fontSize", (DEFAULT_FONT_SIZE / remValue).toString());
                 return DEFAULT_FONT_SIZE / remValue;
@@ -171,12 +172,12 @@ const App: React.FC = () => {
 
     const defaultSettings = () => {
         if (viewportWidth < 46) {
-            setFontSize(2.5);
-        } else setFontSize(6.25);
+            setFontSize(DEFAULT_SMALL_FONT_SIZE);
+        } else setFontSize(DEFAULT_FONT_SIZE);
 
-        setLineHeight(1.2);
-        setTextSpeed(100);
-        setTextMargin(0);
+        setLineHeight(DEFAULT_LINE_HEIGHT);
+        setTextSpeed(DEFAULT_TEXT_SPEED);
+        setTextMargin(DEFAULT_TEXT_MARGIN);
     }
 
     const gridTemplate = viewportWidth < 46 ?
